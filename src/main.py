@@ -38,7 +38,7 @@ def process_record(check_request):
 
         lambda_client = boto3.client("lambda", region_name=region)
         lambda_client.invoke(
-            FunctionName=f"webeye.lambda.{region}.downtime-checker",
+            FunctionName=f"webeye.lambda.downtime-checker.{region}",
             InvocationType="Event",
             Payload=json.dumps(check_request)
         )
@@ -53,4 +53,4 @@ def lambda_handler(event: SQSEvent, context: Context):
 
     with ThreadPoolExecutor() as executor:
         executor.map(process_record, [json.loads(record.get(
-            "body", "")) for record in records], timeout=10)
+            "body", "")) for record in records], timeout=20)
