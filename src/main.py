@@ -43,8 +43,8 @@ def process_record(check_request):
             Payload=json.dumps(check_request)
         )
 
-    except Exception:
-        print(f"Exception when processing request {check_request}")
+    except Exception as e:
+        print(f"Exception when processing request {check_request}: {e}")
         return None
 
 
