@@ -4,7 +4,7 @@ import os
 load_dotenv('.env')
 
 ENVIRONMENT = os.environ.get('ENVIRONMENT')
-AWS_REGION_NAME = os.environ.get('AWS_REGION_NAME', '')
+AWS_REGION = os.environ.get('AWS_REGION', '')
 
 DOWNTIME_CHECKER_LAMBDA_NAME = "webeye-downtime-checker"
 LAMBDA_PREFIX = os.environ.get(
