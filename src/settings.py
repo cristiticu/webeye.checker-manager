@@ -6,6 +6,10 @@ load_dotenv('.env')
 ENVIRONMENT = os.environ.get('ENVIRONMENT')
 AWS_REGION_NAME = os.environ.get('AWS_REGION_NAME', '')
 
+DOWNTIME_CHECKER_LAMBDA_NAME = "webeye-downtime-checker"
+LAMBDA_PREFIX = os.environ.get(
+    'LAMBDA_PREFIX') or "production" if ENVIRONMENT == "production" else "stage"
+
 DYNAMODB_URL_OVERRIDE = os.environ.get('DYNAMODB_URL_OVERRIDE')
 TABLE_PREFIX = os.environ.get(
     'TABLE_PREFIX') or "production" if ENVIRONMENT == "production" else "stage"

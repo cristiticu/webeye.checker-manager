@@ -38,7 +38,7 @@ def process_record(check_request):
 
         lambda_client = boto3.client("lambda", region_name=region)
         lambda_client.invoke(
-            FunctionName=f"webeye.lambda.downtime-checker.{region}",
+            FunctionName=f"{settings.LAMBDA_PREFIX}_{settings.DOWNTIME_CHECKER_LAMBDA_NAME}-{region}",
             InvocationType="Event",
             Payload=json.dumps(check_request)
         )
