@@ -1,5 +1,5 @@
-from downtime.persistence import DowntimePersistence
 from monitored_webpage.persistence import MonitoredWebpagePersistence
+from monitoring_events.persistence import MonitoringEventsPersistence
 
 
 class ApplicationContext():
@@ -10,4 +10,4 @@ class ApplicationContext():
 
     def __init__(self):
         self.monitored_webpages = MonitoredWebpagePersistence()
-        self.downtimes = DowntimePersistence()
+        self.events = MonitoringEventsPersistence()

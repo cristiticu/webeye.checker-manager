@@ -14,34 +14,32 @@ def process_record(check_request):
     print(f"Processing record {check_request}")
 
     try:
-        user_guid = check_request["user_guid"]
-        url = check_request["url"]
-        check_type = check_request["check_type"]
-        region = "us-east-1"
+        u_guid: str = check_request["u_guid"]
+        url: str = check_request["url"]
+        configuration = check_request["configuration"]
 
-        if not application_context.monitored_webpages.has_monitored_webpage(user_guid, url):
+        zones: list[str] = configuration["zones"]
+
+        if not application_context.monitored_webpages.has_monitored_webpage(u_guid, url):
             print("User does not have requested webpage")
             return None
 
-        current_status = application_context.downtimes.get_current_status(
-            user_guid, url, check_type)
+        payload = {
+            "u_guid": u_guid,
+            "url": url
+        }
 
-        if current_status:
-            last_checked_region_index = settings.AVAILABLE_REGIONS.index(
-                current_status.last_checked_from)
-            next_index = (last_checked_region_index +
-                          3) % len(settings.AVAILABLE_REGIONS)
+        print(f"Checking from {zones}")
+        for zone in zones:
+            for region in settings.AVAILABLE_REGIONS[zone]:
 
-            region = settings.AVAILABLE_REGIONS[next_index]
+                lambda_client = boto3.client("lambda", region_name=region)
 
-        print(f"Checking from {region}")
-
-        lambda_client = boto3.client("lambda", region_name=region)
-        lambda_client.invoke(
-            FunctionName=f"{settings.LAMBDA_PREFIX}_{settings.DOWNTIME_CHECKER_LAMBDA_NAME}-{region}",
-            InvocationType="Event",
-            Payload=json.dumps(check_request)
-        )
+                lambda_client.invoke(
+                    FunctionName=f"{settings.LAMBDA_PREFIX}_{settings.SPEED_CHECKER_LAMBDA_NAME}-{region}",
+                    InvocationType="Event",
+                    Payload=json.dumps(payload)
+                )
 
     except Exception as e:
         print(f"Exception when processing request {check_request}: {e}")
