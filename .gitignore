@@ -13,3 +13,8 @@ create_db.sh
 .db
 .coverage
 .pytest_cache
+
+ouch-ecr-busted.sh
+ouch-ecr-removal.sh
+push-to-stage-ecr.sh
+out/

@@ -46,3 +46,8 @@ npm-debug.log
 .coveragerc
 .coverage
 .pyre/
+
+ouch-ecr-busted.sh
+ouch-ecr-removal.sh
+push-to-stage-ecr.sh
+out/

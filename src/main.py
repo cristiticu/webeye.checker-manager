@@ -26,12 +26,18 @@ def process_record(check_request):
 
         payload = {
             "u_guid": u_guid,
-            "url": url
+            "url": url,
+            "check_string": configuration["check_string"] if "check_string" in configuration else None,
+            "fail_on_status": configuration["fail_on_status"] if "fail_on_status" in configuration else [],
+            "timeout": configuration["timeout"] if "timeout" in configuration else None,
+            "screenshot": configuration["save_screenshot"] if "save_screenshot" in configuration else False,
         }
 
-        print(f"Checking from {zones}")
         for zone in zones:
+            print(f"Checking from {zone}")
+
             for region in settings.AVAILABLE_REGIONS[zone]:
+                print(f"Checking from {region}")
 
                 lambda_client = boto3.client("lambda", region_name=region)
 
