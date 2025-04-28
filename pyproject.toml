@@ -5,7 +5,7 @@ description = ""
 authors = [
     {name = "Cristian Ticu",email = "cristian.ticu@eggnita.com"}
 ]
-readme = "README.md"
+package-mode = false
 requires-python = ">=3.12,<4.0"
 dependencies = [
     "python-dotenv (>=1.1.0,<2.0.0)",
