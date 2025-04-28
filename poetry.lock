@@ -18,7 +18,7 @@ version = "2.20.0"
 description = "A package that provides type hints for AWS Lambda event, context and response objects"
 optional = false
 python-versions = "<4.0,>=3.6"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "aws-lambda-typing-2.20.0.tar.gz", hash = "sha256:78b0d8ebab73b3a6b0da98a7969f4e9c4bb497298ec50f3217da8a8dfba17154"},
     {file = "aws_lambda_typing-2.20.0-py3-none-any.whl", hash = "sha256:1d44264cabfeab5ac38e67ddd0c874e677b2cbbae77a42d0519df470e6bbb49b"},
@@ -124,7 +124,7 @@ version = "1.38.3"
 description = "Type annotations and code completion for botocore"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "botocore_stubs-1.38.3-py3-none-any.whl", hash = "sha256:ef42f56b3600020d7da37a0b2e30ada28290c867aa140b4644376c24a978b85c"},
     {file = "botocore_stubs-1.38.3.tar.gz", hash = "sha256:80c7ae25366e2fd39c953906c011d03ac080e35682fd0cdb64fe81056e1bf9a9"},
@@ -517,7 +517,7 @@ version = "0.26.1"
 description = "Type annotations and code completion for awscrt"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "types_awscrt-0.26.1-py3-none-any.whl", hash = "sha256:176d320a26990efc057d4bf71396e05be027c142252ac48cc0d87aaea0704280"},
     {file = "types_awscrt-0.26.1.tar.gz", hash = "sha256:aca96f889b3745c0e74f42f08f277fed3bf6e9baa2cf9b06a36f78d77720e504"},
@@ -529,7 +529,7 @@ version = "1.38.3"
 description = "Type annotations for boto3 1.38.3 generated with mypy-boto3-builder 8.10.1"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "types_boto3-1.38.3-py3-none-any.whl", hash = "sha256:75ccfa44a494e28f43e3e4805c4170cdbb7b98dc6399250fbf5a11d19e8d5623"},
     {file = "types_boto3-1.38.3.tar.gz", hash = "sha256:a47a59be773aa5ef116314063d4de063d76a309ea0e20766b7b45452db0132b2"},
@@ -962,7 +962,7 @@ version = "1.38.0"
 description = "Type annotations for boto3 CloudFormation 1.38.0 service generated with mypy-boto3-builder 8.10.1"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "types_boto3_cloudformation-1.38.0-py3-none-any.whl", hash = "sha256:2957b146d1ad6ae907925973e83d70c86122471bc89ecc621718d99024e69a83"},
     {file = "types_boto3_cloudformation-1.38.0.tar.gz", hash = "sha256:87f44ec1a81f7353cea599a452dfca88f137ef223e9948564f5873133e67f89b"},
@@ -974,7 +974,7 @@ version = "1.38.2"
 description = "Type annotations for boto3 DynamoDB 1.38.2 service generated with mypy-boto3-builder 8.10.1"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "types_boto3_dynamodb-1.38.2-py3-none-any.whl", hash = "sha256:9f6f9236d97d5b0834555cce0f814d0ce882b5700dc3e0a6529409379ac26d4b"},
     {file = "types_boto3_dynamodb-1.38.2.tar.gz", hash = "sha256:b4e7ce6794218abb1270f307d1f0c8c3e85fe1369524bc61c50fc6c821357671"},
@@ -986,7 +986,7 @@ version = "1.38.0"
 description = "Type annotations for boto3 EC2 1.38.0 service generated with mypy-boto3-builder 8.10.1"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "types_boto3_ec2-1.38.0-py3-none-any.whl", hash = "sha256:6f48515d04dbfd2c5a048ac53d4003d4e3c409980b7e7c260bdabc28e420c4d9"},
     {file = "types_boto3_ec2-1.38.0.tar.gz", hash = "sha256:1cff6d86e5cc44ee055eac706f97b2a536ad70ee2619336043a17e727f939f0a"},
@@ -998,7 +998,7 @@ version = "1.38.0"
 description = "Type annotations for boto3 Lambda 1.38.0 service generated with mypy-boto3-builder 8.10.1"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "types_boto3_lambda-1.38.0-py3-none-any.whl", hash = "sha256:944d4cafd9678cfbe073543967674f851e36adfdce9e46b6b6c16c40248a6889"},
     {file = "types_boto3_lambda-1.38.0.tar.gz", hash = "sha256:94345dd9b1e3f1be79de3bcf6e3a53a05092ab873ef34030498cd960139d86bb"},
@@ -1010,7 +1010,7 @@ version = "1.38.2"
 description = "Type annotations for boto3 RDS 1.38.2 service generated with mypy-boto3-builder 8.10.1"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "types_boto3_rds-1.38.2-py3-none-any.whl", hash = "sha256:54dcb64d76353cb2e3b03c4866eabec2ae01d22fca18fbe8341cc475c1c44f67"},
     {file = "types_boto3_rds-1.38.2.tar.gz", hash = "sha256:dda79f5312b7d9dfca1f18359d51c3eddb05bee064d7736c6b74ab2ee24f73b1"},
@@ -1022,7 +1022,7 @@ version = "1.38.0"
 description = "Type annotations for boto3 S3 1.38.0 service generated with mypy-boto3-builder 8.10.1"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "types_boto3_s3-1.38.0-py3-none-any.whl", hash = "sha256:0b3df16b7a1a4806202d32c12569f7b0634f2a3ffd1c2a240bf5e6b70b93f3b5"},
     {file = "types_boto3_s3-1.38.0.tar.gz", hash = "sha256:739e38b45f01b0c85d4d7c281fbb092d1afb445cf90ccf6da51b792053a47176"},
@@ -1034,7 +1034,7 @@ version = "1.38.0"
 description = "Type annotations for boto3 SQS 1.38.0 service generated with mypy-boto3-builder 8.10.1"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "types_boto3_sqs-1.38.0-py3-none-any.whl", hash = "sha256:3bf05864d2c635ad4ea32554223365b51d945859d2ed87f08aa3f2d09ee08518"},
     {file = "types_boto3_sqs-1.38.0.tar.gz", hash = "sha256:7713556cb9a7ab6b6b21a0a2a194b9c13fdeeb6082b87f58e2179a601d964082"},
@@ -1046,7 +1046,7 @@ version = "0.12.0"
 description = "Type annotations and code completion for s3transfer"
 optional = false
 python-versions = ">=3.8"
-groups = ["dev"]
+groups = ["main"]
 files = [
     {file = "types_s3transfer-0.12.0-py3-none-any.whl", hash = "sha256:101bbc5b7f00b71512374df881f480fc6bf63c948b5098ab024bf3370fbfb0e8"},
     {file = "types_s3transfer-0.12.0.tar.gz", hash = "sha256:f8f59201481e904362873bf0be3267f259d60ad946ebdfcb847d092a1fa26f98"},
@@ -1100,4 +1100,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4.0"
-content-hash = "651aabc20373ba29eb66dbed67e6def7d4bbba118b67b7454071f942e1ab3c21"
+content-hash = "cb2e4adc296faf7325ae5fed440cceebfaedecf2af2cb59cdf6310ed2d8a1acc"

@@ -10,7 +10,9 @@ requires-python = ">=3.12,<4.0"
 dependencies = [
     "python-dotenv (>=1.1.0,<2.0.0)",
     "boto3[crt] (>=1.37.26,<2.0.0)",
-    "pydantic (>=2.11.2,<3.0.0)"
+    "pydantic (>=2.11.2,<3.0.0)",
+    "aws-lambda-typing (>=2.20.0,<3.0.0)",
+    "types-boto3[essential] (>=1.38.3,<2.0.0)"
 ]
 
 
@@ -19,8 +21,6 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.group.dev.dependencies]
-aws-lambda-typing = "^2.20.0"
-types-boto3 = {extras = ["essential"], version = "^1.38.3"}
 pytest = "^8.3.5"
 pytest-cov = "^6.1.1"
 

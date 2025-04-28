@@ -1,11 +1,10 @@
 from concurrent.futures import ThreadPoolExecutor
 import json
-from aws_lambda_typing.context import Context
-from aws_lambda_typing.events import SQSEvent
 import boto3
-
 from context import ApplicationContext
 import settings
+from aws_lambda_typing.context import Context
+from aws_lambda_typing.events import SQSEvent
 
 application_context = ApplicationContext()
 
