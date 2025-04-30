@@ -1,10 +1,13 @@
 from concurrent.futures import ThreadPoolExecutor
 import json
+from typing import TYPE_CHECKING
 import boto3
 from context import ApplicationContext
 import settings
-from aws_lambda_typing.context import Context
-from aws_lambda_typing.events import SQSEvent
+
+if TYPE_CHECKING:
+    from aws_lambda_typing.context import Context
+    from aws_lambda_typing.events import SQSEvent
 
 application_context = ApplicationContext()
 
@@ -14,9 +17,9 @@ def process_record(check_request):
 
     try:
         u_guid: str = check_request["u_guid"]
-        url: str = check_request["url"]
         configuration = check_request["configuration"]
 
+        url: str = configuration["url"]
         zones: list[str] = configuration["zones"]
 
         if not application_context.monitored_webpages.has_monitored_webpage(u_guid, url):
@@ -51,7 +54,7 @@ def process_record(check_request):
         return None
 
 
-def lambda_handler(event: SQSEvent, context: Context):
+def lambda_handler(event: "SQSEvent", context: "Context"):
     records = event.get("Records")
 
     with ThreadPoolExecutor() as executor:
