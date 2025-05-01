@@ -54,7 +54,7 @@ def process_record(check_request):
                     "u_guid": u_guid,
                     "w_guid": w_guid,
                     "url": url,
-                    "check_string": check_string,
+                    "c_str": check_string,
                     "accepted_status": accepted_status,
                     "timeout": timeout,
                     "screenshot": should_save_screenshot,
