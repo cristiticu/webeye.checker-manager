@@ -17,24 +17,21 @@ def process_record(check_request):
 
     try:
         u_guid: str = check_request["u_guid"]
+        w_guid: str = check_request["w_guid"]
         configuration = check_request["configuration"]
 
         url: str = configuration["url"]
         zones: list[str] = configuration["zones"]
+        save_screenshot = configuration["save_screenshot"] if "save_screenshot" in configuration else False
+        timeout = configuration["timeout"] if "timeout" in configuration else None
+        accepted_status = configuration["accepted_status"] if "accepted_status" in configuration else None
+        check_string = configuration["check_string"] if "check_string" in configuration else None
 
         if not application_context.monitored_webpages.has_monitored_webpage(u_guid, url):
             print("User does not have requested webpage")
             return None
 
-        payload = {
-            "u_guid": u_guid,
-            "url": url,
-            "check_string": configuration["check_string"] if "check_string" in configuration else None,
-            "fail_on_status": configuration["fail_on_status"] if "fail_on_status" in configuration else [],
-            "timeout": configuration["timeout"] if "timeout" in configuration else None,
-            "screenshot": configuration["save_screenshot"] if "save_screenshot" in configuration else False,
-        }
-
+        screenshot_saved = False
         for zone in zones:
             print(f"Checking from {zone}")
 
@@ -43,11 +40,23 @@ def process_record(check_request):
 
                 lambda_client = boto3.client("lambda", region_name=region)
 
+                payload = {
+                    "u_guid": u_guid,
+                    "w_guid": w_guid,
+                    "url": url,
+                    "check_string": check_string,
+                    "accepted_status": accepted_status,
+                    "timeout": timeout,
+                    "screenshot": (save_screenshot and not screenshot_saved),
+                }
+
                 lambda_client.invoke(
                     FunctionName=f"{settings.LAMBDA_PREFIX}_{settings.SPEED_CHECKER_LAMBDA_NAME}-{region}",
                     InvocationType="Event",
                     Payload=json.dumps(payload)
                 )
+
+                screenshot_saved = True
 
     except Exception as e:
         print(f"Exception when processing request {check_request}: {e}")
