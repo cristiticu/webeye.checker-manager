@@ -1,9 +1,12 @@
 from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone
 import json
 from typing import TYPE_CHECKING
 import boto3
 from context import ApplicationContext
+from monitored_webpage.exceptions import MonitoredWebpageNotFound
 import settings
+from shared.utils import is_after_24_hours
 
 if TYPE_CHECKING:
     from aws_lambda_typing.context import Context
@@ -27,11 +30,15 @@ def process_record(check_request):
         accepted_status = configuration["accepted_status"] if "accepted_status" in configuration else None
         check_string = configuration["check_string"] if "check_string" in configuration else None
 
-        if not application_context.monitored_webpages.has_monitored_webpage(u_guid, url):
+        try:
+            webpage = application_context.monitored_webpages.get(u_guid, url)
+        except MonitoredWebpageNotFound:
             print("User does not have requested webpage")
             return None
 
+        datetime_now = datetime.now(timezone.utc)
         screenshot_saved = False
+
         for zone in zones:
             print(f"Checking from {zone}")
 
@@ -40,6 +47,9 @@ def process_record(check_request):
 
                 lambda_client = boto3.client("lambda", region_name=region)
 
+                should_save_screenshot = save_screenshot and not screenshot_saved and (
+                    not webpage.screenshot_m_at or is_after_24_hours(webpage.screenshot_m_at, datetime_now))
+
                 payload = {
                     "u_guid": u_guid,
                     "w_guid": w_guid,
@@ -47,7 +57,7 @@ def process_record(check_request):
                     "check_string": check_string,
                     "accepted_status": accepted_status,
                     "timeout": timeout,
-                    "screenshot": (save_screenshot and not screenshot_saved),
+                    "screenshot": should_save_screenshot,
                 }
 
                 lambda_client.invoke(
@@ -55,6 +65,10 @@ def process_record(check_request):
                     InvocationType="Event",
                     Payload=json.dumps(payload)
                 )
+
+                if should_save_screenshot:
+                    application_context.monitored_webpages.patch_screenshot_m_at(
+                        u_guid, url, datetime_now)
 
                 screenshot_saved = True
 
