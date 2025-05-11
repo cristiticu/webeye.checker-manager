@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 import json
 from typing import TYPE_CHECKING
 import boto3
-from context import ApplicationContext
+from context import ThreadSafeApplicationContext
 from monitored_webpage.exceptions import MonitoredWebpageNotFound
 import settings
 from shared.utils import is_after_24_hours
@@ -12,11 +12,11 @@ if TYPE_CHECKING:
     from aws_lambda_typing.context import Context
     from aws_lambda_typing.events import SQSEvent
 
-application_context = ApplicationContext()
-
 
 def process_record(check_request):
     print(f"Processing record {check_request}")
+
+    application_context = ThreadSafeApplicationContext()
 
     try:
         u_guid: str = check_request["u_guid"]
